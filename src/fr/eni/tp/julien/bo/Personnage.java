@@ -54,26 +54,24 @@ public class Personnage {
 	public Personnage() {
 		super();
 		this.nom = "roger";
-		this.attaque = 12;
 		this.defense = 10;
 		this.niveau = 8;
 		this.PointDeVie = 50;
 	}
 
-	public Personnage(int id, String nom, int attaque, int defense, int niveau, int PontDeVie) {
+	public Personnage(int id, String nom, int defense, int niveau, int PontDeVie) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.attaque = attaque;
+		
 		this.defense = defense;
 		this.niveau = niveau;
 		this.PointDeVie = PointDeVie;
 	}
 
-	public Personnage(String nom, int attaque, int defense, int niveau, int PontDeVie) {
+	public Personnage(String nom, int defense, int niveau, int PontDeVie) {
 		super();
 		this.nom = nom;
-		this.attaque = attaque;
 		this.defense = defense;
 		this.niveau = niveau;
 		this.PointDeVie = PointDeVie;

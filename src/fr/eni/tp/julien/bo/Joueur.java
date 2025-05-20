@@ -3,6 +3,9 @@
  */
 package fr.eni.tp.julien.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Programme en charge de
  * @date 19 mai 2025 - 13:01:18
@@ -14,7 +17,8 @@ public class Joueur extends Personnage{
 	
 	private String prenom;
 	private String metier;
-	private int or;
+	private double or;
+	
 	
 	
 	
@@ -31,8 +35,8 @@ public class Joueur extends Personnage{
 	 * @param niveau
 	 * @param PontDeVie
 	 */
-	public Joueur(String nom, int attaque, int defense, int niveau, int PointDeVie, int or, String metier, String prenom) {
-		super(nom, attaque, defense, niveau, PointDeVie);
+	public Joueur(String nom, int defense, int niveau, int PointDeVie, double or, String metier, String prenom) {
+		super(nom, defense, niveau, PointDeVie);
 		this.or = or;
 		this.prenom = prenom;
 		this.metier  = metier;
@@ -48,11 +52,19 @@ public class Joueur extends Personnage{
 	 * @param niveau
 	 * @param PontDeVie
 	 */
-	public Joueur(int id, String nom, int attaque, int defense, int niveau, int PontDeVie, int or, String prenom, String metier) {
-		super(id, nom, attaque, defense, niveau, PontDeVie);
+	public Joueur(int id, String nom, int defense, int niveau, int PontDeVie, double or, String prenom, String metier) {
+		super(id, nom, defense, niveau, PontDeVie);
 		this.or = or;
 		this.prenom = prenom;
 		this.metier  = metier;
+	}
+	
+	
+	
+	public void Loot(Butin butin) {
+		
+		this.or = this.or + butin.getOr();
+		System.out.println("Vous avez gagné " + butin.getOr() + " or !");
 	}
 
 
@@ -78,7 +90,7 @@ public class Joueur extends Personnage{
 	 * Getter pour or.
 	 * @return the or
 	 */
-	public int getOr() {
+	public double getOr() {
 		return or;
 	}
 
