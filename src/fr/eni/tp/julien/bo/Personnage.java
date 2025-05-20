@@ -59,7 +59,7 @@ public class Personnage {
 		this.PointDeVie = 50;
 	}
 
-	public Personnage(int id, String nom, int defense, int niveau, int PontDeVie) {
+	public Personnage(int id, String nom, int defense, int niveau, int PointDeVie) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -69,7 +69,7 @@ public class Personnage {
 		this.PointDeVie = PointDeVie;
 	}
 
-	public Personnage(String nom, int defense, int niveau, int PontDeVie) {
+	public Personnage(String nom, int defense, int niveau, int PointDeVie) {
 		super();
 		this.nom = nom;
 		this.defense = defense;
@@ -171,6 +171,13 @@ public class Personnage {
 	 */
 	public void setPointDeVie(int pointDeVie) {
 		PointDeVie = pointDeVie;
+	}
+	
+	public void LoozPts() {
+		this.PointDeVie -= 1;
+	}
+	public void LoozPtsBoss() {
+		this.PointDeVie -= 3;
 	}
 
 }

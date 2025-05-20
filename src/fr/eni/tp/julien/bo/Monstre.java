@@ -13,11 +13,11 @@ public class Monstre{
 private String type;
 private int atk;
 private int def;
-private Donjon donjon;
+private int PointDeVie;
 
-public Monstre(String type, Donjon donjon, int atk, int def) {
+public Monstre(String type, int PointDeVie, int atk, int def) {
 	this.type = type;
-	this.donjon = donjon;
+	this.PointDeVie = PointDeVie;
 	this.atk = atk;
 	this.def= def;
 }
@@ -34,7 +34,7 @@ public Monstre() {
 }
 
 public void communique() {
-	System.out.println("Monstre du donjon de : " + donjon.getNom() + " de type " + type + " et de niveau " + donjon.getNiveau());
+	System.out.println(   type );
 }
 
 /**
@@ -45,13 +45,7 @@ public String getType() {
 	return type;
 }
 
-/**
- * Getter pour donjon.
- * @return the donjon
- */
-public Donjon getDonjon() {
-	return donjon;
-}
+
 
 /**
  * Setter pour type.
@@ -61,13 +55,7 @@ public void setType(String type) {
 	this.type = type;
 }
 
-/**
- * Setter pour donjon.
- * @param donjon the donjon to set
- */
-public void setDonjon(Donjon donjon) {
-	this.donjon = donjon;
-}
+
 
 /**
  * Getter pour atk.
@@ -99,5 +87,26 @@ public void setAtk(int atk) {
  */
 public void setDef(int def) {
 	this.def = def;
+}
+
+/**
+ * Getter pour pointDeVie.
+ * @return the pointDeVie
+ */
+public int getPointDeVie() {
+	return PointDeVie;
+}
+
+/**
+ * Setter pour pointDeVie.
+ * @param pointDeVie the pointDeVie to set
+ */
+public void setPointDeVie(int pointDeVie) {
+	PointDeVie = pointDeVie;
+}
+
+public void LoozPtsE(PointDeVie pointDeVie) {
+	this.PointDeVie = this.pointDeVie - pointDeVie;
+	this.PointDeVie -= 1;
 }
 }

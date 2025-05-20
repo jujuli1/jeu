@@ -9,7 +9,7 @@ package fr.eni.tp.julien.bo;
  * @version TpJulien_V1.0
  * @author jlefevre2025
  */
-public class Armes extends Personnage{
+public class Armes extends Joueur{
 	
 	
 private String nom;

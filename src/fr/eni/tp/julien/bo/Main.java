@@ -4,6 +4,7 @@
 package fr.eni.tp.julien.bo;
 
 import java.util.ArrayList;
+import fr.eni.tp.julien.bo.Inventaire;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -40,16 +41,17 @@ public class Main {
 		Donjon donjon3 = new Donjon("Rouge-Mer", 20, 160);
 		
 		//monstre
-		Monstre monstre = new Monstre("Murloc", donjon, 9, 6);
-		Monstre monstre2 = new Monstre("Ours", donjon, 12, 10);
-		Monstre monstre3 = new Monstre("fantomas", donjon, 19, 3);
-		Monstre boss = new Monstre("Roi-Liche", donjon, 59, 30);
+		Monstre monstre = new Monstre("Murloc", 4, 9, 6);
+		Monstre monstre2 = new Monstre("Ours", 4, 12, 10);
+		Monstre monstre3 = new Monstre("fantomas", 4, 19, 3);
+		Monstre boss = new Monstre("Roi-Liche", 5, 59, 30);
 		
 		//joueur
 		Joueur joueur = new Joueur("PexInSafety", 3, 10, 4, 5,"Enchanteur", "PexInSafety");
+		System.out.println(joueur);
 		
 		//armes
-		Armes arme = new Armes("hache en papier bulle"," Arme a une main", 10, 10, 4);
+		Armes arme = new Armes("hache en papier bulle"," Arme a une main", 0, 10, 4);
 		Armes arme2 = new Armes("Epée en polystyrène"," Arme a deux mains", 12, 10, 5);
 		
 		//Loot
@@ -112,7 +114,8 @@ public class Main {
 				+ " rencontre un " + " "  
 				+ mob.getType() 
 				+ " ATK : " + mob.getAtk()
-				+ " DEF : " + mob.getDef());
+				+ " DEF : " + mob.getDef()
+				+ " LP : " + mob.getPointDeVie());
 				
 				
 				
@@ -157,14 +160,24 @@ public class Main {
 									System.out.println(" L'attaque de l ennemi contre le joueur à échouée !");
 								}else {
 									System.out.println(" Le joueur a été toucher par l'attaque de l ennemi :  Fatality");
+									joueur.LoozPts();
+									System.out.println("Ils vous reste " + joueur.getPointDeVie() + " LP");
 									
 								}
 								
 							}else {
-								System.out.println("U win ! ");
+								monstre.LoozPtsE();
+								if(monstre.getPointDeVie() <= 0){
+									System.out.println("U win ! ");
 								System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
 								joueur.Loot(butinChoisit);
 								System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
+
+
+								}else{
+									System.out.println(monstre.getPointDeVie());
+								}
+								
 								
 								//Pour plus tard
 								monSac.add(bourse);
@@ -181,13 +194,23 @@ public class Main {
 									System.out.println(" L'attaque du monstre contre le joueur à échouée !");
 								}else {
 									System.out.println(" Le joueur a été toucher par l'attaque du " + monstre.getType() + " : " + " Fatality");
+									joueur.LoozPts();
+									System.out.println("Ils vous reste " + joueur.getPointDeVie() + " LP");
 								}
 								
 							}else {
-								System.out.println("U win ! ");
+								monstre.LoozPtsE();
+								System.out.println(monstre.getPointDeVie());
+								if(monstre.getPointDeVie() <= 0){
+									System.out.println("U win ! ");
 								System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
 								joueur.Loot(butinChoisit);
 								System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
+
+
+								}else{
+									System.out.println(monstre.getPointDeVie());
+								}
 								//Pour plus tard
 								monSac.add(bourse);
 								
@@ -204,7 +227,7 @@ public class Main {
 					
 				}
 				System.out.println("La boucle a terminé après 3 itérations.");
-				for(int i =0; i < 1; i++) {
+				for(int i =0; i < 3; i++) {
 					
 					
 					System.out.println( 
@@ -244,7 +267,7 @@ public class Main {
 							
 							
 							
-							//Choisit de combattre
+							//Choisit de combattre le Boss
 								if(combat == 1) {
 									System.out.println("FIGHT ! ");
 									//Choisit de combattre avec hache en papier bulle
@@ -255,14 +278,26 @@ public class Main {
 												System.out.println(" L'attaque de l ennemi contre le joueur à échouée !");
 											}else {
 												System.out.println(" Le joueur a été toucher par l'attaque du" + boss.getType()  + " :  Fatality");
-												
+												joueur.LoozPtsBoss();
+												System.out.println("Ils vous reste " + joueur.getPointDeVie() + " LP");
+												if(joueur.getPointDeVie() < 0){
+													System.out.println("Vous avez mourru ! ");
+													break;
+												}
 											}
 											
 										}else {
-											System.out.println("U win ! ");
-											System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
-											joueur.Loot(butinChoisit);
-											System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
+											monstre.LoozPtsE();
+								if(monstre.getPointDeVie() < 0){
+									System.out.println("U win ! ");
+								System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
+								joueur.Loot(butinChoisit);
+								System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
+
+
+								}else{
+									System.out.println(monstre.getPointDeVie());
+								}
 											
 											//Pour plus tard
 											monSac.add(bourse);
@@ -279,6 +314,12 @@ public class Main {
 												System.out.println(" L'attaque du " + boss.getType() +" contre le joueur à échouée !");
 											}else {
 												System.out.println(" Le joueur a été toucher par l'attaque du " + boss.getType() + " : " + " Fatality");
+												joueur.LoozPtsBoss();
+												System.out.println("Ils vous reste " + joueur.getPointDeVie() + " LP");
+												if(joueur.getPointDeVie() < 0){
+													System.out.println("Vous avez mourru ! ");
+													break;
+												}
 											}
 											
 										}else {
@@ -299,8 +340,12 @@ public class Main {
 								if(combat == 2) {
 									System.out.println("* Fuit courageusement ...* ");
 								}
-								
+
+
 							}
+								
+								
+							
 			
 
 		
@@ -358,6 +403,8 @@ public class Main {
 								System.out.println(" L'attaque de l ennemi contre le joueur à échouée !");
 							}else {
 								System.out.println(" Le joueur a été toucher par l'attaque de l ennemi :  Fatality");
+								joueur.LoozPts();
+								System.out.println("Ils vous reste " + joueur.getPointDeVie() + " LP");
 								
 							}
 							
@@ -380,6 +427,8 @@ public class Main {
 								System.out.println(" L'attaque du monstre contre le joueur à échouée !");
 							}else {
 								System.out.println(" Le joueur a été toucher par l'attaque du " + monstre.getType() + " : " + " Fatality");
+								joueur.LoozPts();
+								System.out.println("Ils vous reste " + joueur.getPointDeVie() + " LP");
 							}
 							
 						}else {

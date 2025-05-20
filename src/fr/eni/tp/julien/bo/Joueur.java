@@ -18,6 +18,7 @@ public class Joueur extends Personnage{
 	private String prenom;
 	private String metier;
 	private double or;
+	private int PointDeVie;
 	
 	
 	
@@ -33,13 +34,14 @@ public class Joueur extends Personnage{
 	 * @param attaque
 	 * @param defense
 	 * @param niveau
-	 * @param PontDeVie
+	 * @param PointDeVie
 	 */
 	public Joueur(String nom, int defense, int niveau, int PointDeVie, double or, String metier, String prenom) {
 		super(nom, defense, niveau, PointDeVie);
 		this.or = or;
 		this.prenom = prenom;
 		this.metier  = metier;
+		this.PointDeVie= PointDeVie;
 		
 	}
 	
@@ -50,13 +52,14 @@ public class Joueur extends Personnage{
 	 * @param attaque
 	 * @param defense
 	 * @param niveau
-	 * @param PontDeVie
+	 * @param PointDeVie
 	 */
-	public Joueur(int id, String nom, int defense, int niveau, int PontDeVie, double or, String prenom, String metier) {
-		super(id, nom, defense, niveau, PontDeVie);
+	public Joueur(int id, String nom, int defense, int niveau, int PointDeVie, double or, String prenom, String metier) {
+		super(id, nom, defense, niveau, PointDeVie);
 		this.or = or;
 		this.prenom = prenom;
 		this.metier  = metier;
+		this.PointDeVie = PointDeVie;
 	}
 	
 	
