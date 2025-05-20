@@ -14,7 +14,7 @@ public class Armes extends Joueur{
 	
 private String nom;
 private String type;
-private int atk;
+public int atk;
 private int def;
 private int lvl;
 

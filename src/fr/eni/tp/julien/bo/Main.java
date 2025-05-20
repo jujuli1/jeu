@@ -29,6 +29,8 @@ public class Main {
 		
 		System.out.println("hola aventurier, ou souhaitez vous vous rendre ? : ");
 		int saisie = scanner .nextInt();
+
+		
 		
 ;		
 		
@@ -41,9 +43,9 @@ public class Main {
 		Donjon donjon3 = new Donjon("Rouge-Mer", 20, 160);
 		
 		//monstre
-		Monstre monstre = new Monstre("Murloc", 4, 9, 6);
-		Monstre monstre2 = new Monstre("Ours", 4, 12, 10);
-		Monstre monstre3 = new Monstre("fantomas", 4, 19, 3);
+		Monstre monstre = new Monstre("Murloc", 5, 9, 6);
+		Monstre monstre2 = new Monstre("Ours", 14, 12, 10);
+		Monstre monstre3 = new Monstre("fantomas", 13, 19, 3);
 		Monstre boss = new Monstre("Roi-Liche", 5, 59, 30);
 		
 		//joueur
@@ -51,7 +53,7 @@ public class Main {
 		System.out.println(joueur);
 		
 		//armes
-		Armes arme = new Armes("hache en papier bulle"," Arme a une main", 0, 10, 4);
+		Armes arme = new Armes("hache en papier bulle"," Arme a une main", 7, 10, 4);
 		Armes arme2 = new Armes("Epée en polystyrène"," Arme a deux mains", 12, 10, 5);
 		
 		//Loot
@@ -109,7 +111,7 @@ public class Main {
 				System.out.println("Vous vous dirigez vers " + donjon.getNom());
 				System.out.println(joueur.getPrenom() + " decide de rentrer dans le donjon ...");
 				
-				for(int i =0; i < 3;i++){
+				for(int i =0; i < 10;i++){
 				System.out.println(joueur.getPrenom() 
 				+ " rencontre un " + " "  
 				+ mob.getType() 
@@ -148,7 +150,6 @@ public class Main {
 				
 				
 				
-				
 				//Choisit de combattre
 					if(combat == 1) {
 						System.out.println("FIGHT ! ");
@@ -166,12 +167,18 @@ public class Main {
 								}
 								
 							}else {
+								//calcul des dégats des armes sur les LP des ennemis
+				                
 								monstre.LoozPtsE();
+								int ptsE = monstre.getPointDeVie() - armeChoisi.getAtk();
+								System.out.println(monstre.getPointDeVie());
+								
 								if(monstre.getPointDeVie() <= 0){
 									System.out.println("U win ! ");
 								System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
 								joueur.Loot(butinChoisit);
 								System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
+								break;
 
 
 								}else{
@@ -199,13 +206,18 @@ public class Main {
 								}
 								
 							}else {
+								
+								//calcul des dégats des armes sur les LP des ennemis
 								monstre.LoozPtsE();
-								System.out.println(monstre.getPointDeVie());
+								int ptsE = monstre.getPointDeVie() - armeChoisi.getAtk();
+								
 								if(monstre.getPointDeVie() <= 0){
+									
 									System.out.println("U win ! ");
 								System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
 								joueur.Loot(butinChoisit);
 								System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
+								break;
 
 
 								}else{
@@ -287,17 +299,14 @@ public class Main {
 											}
 											
 										}else {
-											monstre.LoozPtsE();
-								if(monstre.getPointDeVie() < 0){
+											
+								
 									System.out.println("U win ! ");
 								System.out.println("Vous avez ramassé " + butinChoisit.getNom() + " D'une valeur de " + butinChoisit.getOr());
 								joueur.Loot(butinChoisit);
 								System.out.println("Vous disposez de : " + joueur.getOr() + " or ");
 
 
-								}else{
-									System.out.println(monstre.getPointDeVie());
-								}
 											
 											//Pour plus tard
 											monSac.add(bourse);

@@ -105,8 +105,8 @@ public void setPointDeVie(int pointDeVie) {
 	PointDeVie = pointDeVie;
 }
 
-public void LoozPtsE(PointDeVie pointDeVie) {
-	this.PointDeVie = this.pointDeVie - pointDeVie;
-	this.PointDeVie -= 1;
+public void LoozPtsE() {
+	
+	this.PointDeVie = PointDeVie - 1;
 }
 }
